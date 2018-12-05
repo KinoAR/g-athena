@@ -13,18 +13,25 @@ class HomeView(generic.ListView):
     def get_queryset(self):
         return Game.objects.order_by("-publish_date")[:5]
 
-class RegisterView(generic.FormView):
+class RegisterView(generic.TemplateView):
     template_name = "reviews/register.html"
     context_object_name = ""
-            
+
 
 class SearchResultsView(generic.TemplateView):
     template_name = "reviews/searchresults.html"
     context_object_name = ""
 
-class GameView(generic.TemplateView):
+class GameView(generic.DetailView):
+    model = Game
     template_name = "reviews/game.html"
-    context_object_name = ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['reviews_list'] = get_list_or_404(GameReview, game_id=self.kwargs.get('pk'))
+        # self.reviews_list = 
+        return context
+    
 
 class ReviewView(generic.TemplateView):
     template_name = "reviews/review.html"

@@ -1,7 +1,33 @@
 {% extends 'reviews/base.html' %}
 {% block content %}
-<div class="col-12 text-center">
-  <p> Game Template
-  </p>
+<div class="row">
+  <div class="col-12">
+    <h1>{{ game.name }}</h1>
+  </div>
+  <div class="col-12 text-center">
+    <p> {{ game.description }}
+    </p>
+  </div>
+  <div class="col-12">
+    {% if reviews_list %}
+      <ul class="game-list">
+      {% for review in reviews_list %}
+        <li>
+          <div class="card">
+          <h5 class="card-header"> Username </h5>
+          <div class="card-body">
+            <h5 class="card-title"> {{ review.show_score() }}</h5>
+            <p class="card-text">
+              {{ review.review }}
+            </p>
+          </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+     {% else %}
+     <p>No reviews available</p> 
+    {%endif%}
+  </div>
 </div>
 {% endblock %}

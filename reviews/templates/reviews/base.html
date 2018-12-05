@@ -8,12 +8,12 @@
   <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
   <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
   <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/styles.css' %}">
   <title>G-Athena</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">G-Athena</a>
+  <a class="navbar-brand" href="{% url 'reviews:home' %}">G-Athena</a>
   <span class="navbar-text">
     Username
   </span>
@@ -30,15 +30,11 @@
   </div>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
-
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="/reviews/"> G-Athena</a>
+    <a class="site-link" href="{% url 'reviews:home' %}"> G-Athena</a>
   </div>
-  <!-- Copyright -->
-
 </footer>
-<!-- Footer -->
 </body>
 
 </html>

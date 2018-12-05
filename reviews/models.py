@@ -10,7 +10,7 @@ class User(models.Model):
     creation_date = models.DateTimeField("creation date")
 
     def __str__(self):
-        return "User: "+ user_id + " " + self.username
+        return "User: "+ str(self.user_id) + " " + self.username
 
     def created_recently(self):
         return self.creation_date > timezone.now() - datetime.timedelta(days=1)
@@ -19,7 +19,7 @@ class User(models.Model):
 class Game(models.Model):
     game_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField(max_length=250)
+    description = models.TextField(max_length=500)
     publish_date = models.DateTimeField("publish_date")
     console = models.CharField(max_length=50)
 
