@@ -1,0 +1,30 @@
+{% extends 'reviews/base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-12">
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="siteUsername" aria-describedby="usernameHelp" placeholder="Enter username">
+          <small id="usernameHelp" class="form-text text-muted">Your user information is safe with us</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="sitePassword" placeholder="Enter password">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">
+            Login
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

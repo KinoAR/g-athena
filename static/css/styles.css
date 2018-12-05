@@ -1,0 +1,10 @@
+.page-footer {
+  color:white;
+  background-color: black;
+  font-size: 1.2em;
+}
+
+.game-list {
+  list-style-type: none;
+  list-style: none;
+}
