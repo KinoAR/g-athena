@@ -1,5 +1,6 @@
 {% extends 'reviews/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
   <div class="row text-center">
     <div class="col-12">
       <h2>
@@ -10,7 +11,13 @@
       <p>{{game.description}}</p>
     </div>
     <div class="col-12">
-      <form action="">
+      <div class="col-12">
+        <b>Submit Your Review</b>
+      </div>
+      <br>
+      {% csrf_token %}
+      {{form|crispy}}
+      <!-- <form action="">
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">Review</span>
@@ -29,7 +36,7 @@
             </button>
           </div>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 {% endblock %}

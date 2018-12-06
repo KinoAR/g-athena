@@ -3,8 +3,10 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.views import generic
 from django.urls import reverse
+from django.db.models import Q
+from functools import reduce
 from .models import User, Game, GameReview
-from .forms import UserForm
+from .forms import UserForm, ReviewForm
 # Create your views here.
 
 class HomeView(generic.ListView):
@@ -20,9 +22,19 @@ class RegisterView(generic.FormView):
     context_object_name = "form"
 
 
-class SearchResultsView(generic.TemplateView):
+class SearchResultsView(generic.ListView):
+    model = Game
     template_name = "reviews/searchresults.html"
-    context_object_name = ""
+    context_object_name = "searched_games_list"
+
+    def get_queryset(self, **kwargs):
+        context = super().get_queryset(**kwargs)
+        search_string = self.kwargs.get('search')
+        print(search_string)
+        list = search_string.split(sep=" ")
+        return Game.objects.filter(
+            reduce(lambda x, y: x | y, [Q(name__contains=word) for word in list])
+        )
 
 class GameView(generic.DetailView):
     model = Game
@@ -36,7 +48,12 @@ class GameView(generic.DetailView):
         return context
     
 
-class ReviewView(generic.TemplateView):
+class ReviewView(generic.FormView):
     model = Game
+    form_class = ReviewForm
     template_name = "reviews/review.html"
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['game'] = Game.objects.get(game_id=self.kwargs.get('pk'))
+        return context
