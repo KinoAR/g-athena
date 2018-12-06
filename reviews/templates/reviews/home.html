@@ -1,12 +1,43 @@
 {% extends 'reviews/base.html' %}
 {% block content %} 
-<div class="row">
-  <div class="col-8 text-center">
+<div class="row text-left">
+  <div class="col-12 col-md-8 text-center">
+    <h1>Introduction</h1>
     <p> G-Athena is a game review website dedicated
-      to creating a great experience for all users.
+      to creating a great experience for all users. It is a community
+      driven website that allows user to submit their own reviews unlike
+      large websites like IGN or Gamespot. <b>Get reviews straight from
+         the players.</b>
     </p>
+    <hr>
+    <div class="row text-center">
+      <div class="col-12 col-md-4">
+        <h2>
+          Community Driven
+        </h2>
+        Our reviews are crafted by hand by our lovely community members,
+        so that you can get different opinions from individuals across
+        all walks of life.
+      </div>
+      <div class="col-12 col-md-4">
+        <h2>
+          Responsive Design
+        </h2>
+        Enjoy reading your favorite reviews on a website that works
+        across all devices. Enjoy seamless transitions between each
+        platform.
+      </div>
+      <div class="col-12 col-md-4">
+        <h2>
+          Quality Assured
+        </h2>
+        Reviews are reviewed by our administrators to ensure that all
+        reviews are legitimate and make sense. You can trust us for
+        quality.
+      </div>
+    </div>
   </div>
-  <div class="col-4 text-left">
+  <div class="col-12 col-md-4 text-left">
     <h2>Games</h2>
     {% if latest_games_list %}
     <ul class="game-list">
@@ -19,7 +50,7 @@
             <p class="card-text">
               {{game.description}}
             </p>
-            <a href="#" class="btn btn-primary">Game Page</a>
+            <a href="{% url 'reviews:game' game.game_id %}" class="btn btn-primary">Game Page</a>
           </div>
         </div>
       </li>

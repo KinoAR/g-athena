@@ -44,6 +44,3 @@ class GameReview(models.Model):
 
     def published_recently(self):
         return self.publish_date > timezone.now() - datetime.timedelta(days=1)
-    
-    def show_score(self):
-        return str(score) + "/5" 

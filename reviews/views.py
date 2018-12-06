@@ -4,6 +4,7 @@ from django.template import loader
 from django.views import generic
 from django.urls import reverse
 from .models import User, Game, GameReview
+from .forms import UserForm
 # Create your views here.
 
 class HomeView(generic.ListView):
@@ -13,9 +14,10 @@ class HomeView(generic.ListView):
     def get_queryset(self):
         return Game.objects.order_by("-publish_date")[:5]
 
-class RegisterView(generic.TemplateView):
+class RegisterView(generic.FormView):
+    form_class = UserForm
     template_name = "reviews/register.html"
-    context_object_name = ""
+    context_object_name = "form"
 
 
 class SearchResultsView(generic.TemplateView):
@@ -28,12 +30,13 @@ class GameView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['reviews_list'] = get_list_or_404(GameReview, game_id=self.kwargs.get('pk'))
+        # Filter is used to show more than one data in the view
+        context['reviews_list'] = GameReview.objects.filter(game_id=self.kwargs.get('pk'))
         # self.reviews_list = 
         return context
     
 
 class ReviewView(generic.TemplateView):
+    model = Game
     template_name = "reviews/review.html"
-    context_object_name = ""
     

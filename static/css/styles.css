@@ -7,9 +7,14 @@
 .game-list {
   list-style-type: none;
   list-style: none;
+  padding-left: 0px;
 }
 
 .site-link {
   text-decoration: none;
-  color:rebeccapurple!important;
+  color:white;
+}
+a.site-link:hover {
+  text-decoration: underline;
+  color:gold !important;
 }
