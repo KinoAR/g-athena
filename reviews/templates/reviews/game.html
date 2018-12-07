@@ -9,12 +9,17 @@
     </p>
   </div>
   <div class="col-12">
+    <div class="col-12 text-center">
+      <a class="site-reg-link" href="{% url 'reviews:review' game.game_id %}">
+        Add A Review
+      </a>
+    </div>
     {% if reviews_list %}
       <ul class="game-list">
       {% for review in reviews_list %}
         <li>
           <div class="card">
-          <h5 class="card-header"> Username </h5>
+          <h5 class="card-header"> {{review.user_id.username}} </h5>
           <div class="card-body">
             <h5 class="card-title"> {{ review.score }} / 5</h5>
             <p class="card-text">

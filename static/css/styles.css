@@ -14,7 +14,25 @@
   text-decoration: none;
   color:white;
 }
+
+a.site-reg-link {
+  text-decoration: none;
+  color: black;
+}
+a.site-reg-link:hover {
+  text-decoration: underline;
+  color:red;
+}
 a.site-link:hover {
   text-decoration: underline;
   color:gold !important;
+}
+
+a.nav-btn {
+  padding-left: 5px!important;
+}
+
+a.test-btn {
+  padding-left: 5px !important;
+  margin-left: 30px;
 }

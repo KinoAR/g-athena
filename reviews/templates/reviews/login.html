@@ -1,38 +1,19 @@
 {% extends 'reviews/base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-  <div class="row text-center">
-    <h2> Registration </h2>
-    <div class="col-12">
-      <form action="{% url 'reviews:register' %}" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <button  type="submit" class="btn btn-primary">
-          Register
-        </button>
-      </form>
+<div class="row text-center">
+  <h2>Login</h2>
+  <div class="col-12">
+    <form action="/reviews/login/" method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
       <br>
-      {% block javascript %}
-      <script>
-        $("#id_username").change(function () {
-          const username = $(this).val();
-          $.ajax({
-            url: "{% url 'reviews:validate_username' %}",
-            data: {
-              'username': username
-            },
-            dataType: 'json',
-            success: function (data) {
-              if (data.is_taken) {
-                alert("A user with this username already exists.");
-              }
-            }
-          });
-        });
-      </script>
-      {% endblock %}
-      <!-- <form action="" method="POST">
+      <button type="submit" class="btn btn-primary">
+        Login
+      </button>
+    </form>
+    <br>
+    <!-- <form action="" method="POST">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="siteUsername" aria-describedby="usernameHelp" placeholder="Enter username">
@@ -53,6 +34,6 @@
           </div>
         </div>
       </form> -->
-    </div>
   </div>
+</div>
 {% endblock %}

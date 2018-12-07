@@ -1,4 +1,6 @@
 from django import forms
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 class UserForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -6,3 +8,7 @@ class UserForm(forms.Form):
 
 class ReviewForm(forms.Form):
     review = forms.CharField(widget=forms.Textarea, required=True)
+    score = forms.IntegerField(validators=[
+        MinValueValidator(0),
+        MaxValueValidator(5)
+    ])

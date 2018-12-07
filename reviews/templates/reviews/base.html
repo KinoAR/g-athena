@@ -9,14 +9,33 @@
   <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
   <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
   <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+  <script src="{% static 'js/search.js' %}"></script>
   <title>G-Athena</title>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand site-link" href="{% url 'reviews:home' %}">G-Athena</a>
-  <span class="navbar-text">
-    Username
-  </span>
+  <form action="" class="form-inline">
+    <span class="navbar-text">
+      {% if localUser %}
+      {{ localUser.username }}
+      {%else %}
+
+      {% endif %}
+    </span>
+      {% if localUser %}
+        <a class="btn btn-outline-success nav-btn" href="{% url 'reviews:logout' %}">
+          Logout
+        </a>
+      {%else %}
+        <a class="btn btn-outline-success nav-btn" href="{% url 'reviews:login' %}">
+          Login
+        </a>
+        <a class="btn btn-outline-success nav-btn" href="{% url 'reviews:register' %}">
+          Sign up
+        </a>
+    {% endif %}
+  </form>
 </nav>
   <div class="container">
     <div class="row justify-content-center">
