@@ -150,7 +150,7 @@ def logout(request):
         del request.session['member_id']
     except KeyError:
         pass
-    return HttpResponseRedirect(reverse('reviews:logout'))
+    return HttpResponseRedirect(reverse('reviews:login'))
 
 
 def validate_username(request):
